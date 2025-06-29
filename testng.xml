@@ -1,47 +1,10 @@
-
-<?xml version="1.0" encoding="UTF-8"?>
-<suite name="E-commerce Advanced Testing Suite" verbose="1" parallel="methods" thread-count="3">
-
-    <listeners>
-        <listener class-name="listeners.TestListener"/>
-    </listeners>
-
-    <test name="Security Testing">
-        <groups>
-            <run>
-                <include name="security"/>
-            </run>
-        </groups>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="EcommerceSuite" parallel="classes" thread-count="3">
+    <test name="EcommerceTests">
         <classes>
-            <class name="security.SecurityTestSuite"/>
+            <class name="tests.CartTests"/>
+            <class name="tests.HomePageTests"/>
+            <!-- Add other test classes here -->
         </classes>
     </test>
-
-    <test name="Functional Testing - Chrome">
-        <parameter name="browser" value="chrome"/>
-        <parameter name="headless" value="false"/>
-        <groups>
-            <run>
-                <include name="smoke"/>
-                <include name="regression"/>
-            </run>
-        </groups>
-        <classes>
-            <class name="tests.ECommerceAdvancedTests"/>
-        </classes>
-    </test>
-
-    <test name="Cross-browser Testing - Firefox">
-        <parameter name="browser" value="firefox"/>
-        <parameter name="headless" value="true"/>
-        <groups>
-            <run>
-                <include name="smoke"/>
-            </run>
-        </groups>
-        <classes>
-            <class name="tests.ECommerceAdvancedTests"/>
-        </classes>
-    </test>
-
 </suite>

@@ -32,27 +32,22 @@ public class P01_HomePage extends BasePage {
         wait.until(driver -> !driver.findElements(productGrid).isEmpty());
     }
 
-    public void verifyLogoIsDisplayed() {
-        if (!driver.findElement(By.cssSelector("a.logo")).isDisplayed()) {
-            throw new AssertionError("Logo is not displayed");
-        }
+    public boolean verifyLogoIsDisplayed() {
+        return driver.findElement(By.cssSelector("a.logo")).isDisplayed();
+
     }
 
-    public void verifySearchBarIsVisible() {
-        if (!driver.findElement(By.id("search")).isDisplayed()) {
-            throw new AssertionError("Search bar is not visible");
-        }
+    public boolean verifySearchBarIsVisible() {
+        return driver.findElement(By.id("search")).isDisplayed();
+
     }
 
-    public void verifySearchButtonIsVisible() {
-        if (!driver.findElement(searchBox).isDisplayed()) {
-            throw new AssertionError("Search box is not visible");
-        }
+    public boolean verifySearchButtonIsVisible() {
+        return driver.findElement(searchBox).isDisplayed();
+
     }
 
-    public void verifyCartIconIsVisible() {
-        if (!driver.findElement(cartIcon).isDisplayed()) {
-            throw new AssertionError("Cart icon is not visible");
-        }
+    public boolean verifyCartIconIsVisible() {
+        return driver.findElement(cartIcon).isDisplayed();
     }
 }

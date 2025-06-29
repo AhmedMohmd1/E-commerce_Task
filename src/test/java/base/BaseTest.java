@@ -9,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.testng.asserts.SoftAssert;
 import pages.P01_HomePage;
+import reports.ExtentReportManager;
 import utils.ConfigReader;
 import utils.LoggerUtil;
 
@@ -19,7 +20,7 @@ public class BaseTest {
     protected SoftAssert soft;
 
     @BeforeMethod
-    @Parameters({"browser", "headless"})
+    @Parameters({ "browser", "headless" })
     public void setUp(@Optional("edge") String browser, @Optional("false") String headless) {
         driver = createDriver(browser, Boolean.parseBoolean(headless));
         driverThreadLocal.set(driver);
@@ -37,7 +38,8 @@ public class BaseTest {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
-                if (headless) chromeOptions.addArguments("--headless");
+                if (headless)
+                    chromeOptions.addArguments("--headless");
                 chromeOptions.addArguments("--disable-web-security");
                 chromeOptions.addArguments("--allow-running-insecure-content");
                 driver = new ChromeDriver(chromeOptions);
@@ -64,11 +66,21 @@ public class BaseTest {
         return driverThreadLocal.get();
     }
 
-   @AfterMethod
-   public void tearDown() {
-       if (driver != null) {
-           driver.quit();
-           driverThreadLocal.remove();
-       }
-   }
+    @AfterMethod
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+            driverThreadLocal.remove();
+        }
+    }
+
+    @BeforeSuite
+    public void beforeSuite() {
+        ExtentReportManager.initReports();
+    }
+
+    @AfterSuite
+    public void afterSuite() {
+        ExtentReportManager.flushReports();
+    }
 }

@@ -26,7 +26,7 @@ public class P04_CheckoutPage extends P03_CartPage {
     private final By shippingMethod1 = By.name("ko_unique_1");
 
     private final By nextButton = By.xpath("//*[@id='shipping-method-buttons-container']//button[@type='submit']");
-    private final By placeOrderButton = By.cssSelector("button[title='Place Order']");
+    private final By placeOrderButton = By.xpath("//span[normalize-space()='Place Order']");
 
     private final By validateMessage = By.linkText("Thank you for your purchase!");
 
@@ -105,6 +105,7 @@ public class P04_CheckoutPage extends P03_CartPage {
 
     public P04_CheckoutPage pressPlaceOrder() {
         scrollTillVisible(placeOrderButton);
+        waitUntilVisibleElement(placeOrderButton);
         clickElement(placeOrderButton);
         return this;
     }
