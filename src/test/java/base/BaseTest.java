@@ -8,14 +8,14 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.testng.asserts.SoftAssert;
-import pages.HomePage;
+import pages.P01_HomePage;
 import utils.ConfigReader;
 import utils.LoggerUtil;
 
 public class BaseTest {
     public WebDriver driver;
     private static final ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
-    protected HomePage homePage;
+    protected P01_HomePage homePage;
     protected SoftAssert soft;
 
     @BeforeMethod
@@ -26,7 +26,7 @@ public class BaseTest {
 
         driver.manage().window().maximize();
         driver.get(ConfigReader.getProperty("base.url"));
-        homePage = new HomePage(driver);
+        homePage = new P01_HomePage(driver);
         LoggerUtil.info("Test setup completed for browser: " + browser);
     }
 
@@ -64,11 +64,11 @@ public class BaseTest {
         return driverThreadLocal.get();
     }
 
-//    @AfterMethod
-//    public void tearDown() {
-//        if (driver != null) {
-//            driver.quit();
-//            driverThreadLocal.remove();
-//        }
-//    }
+   @AfterMethod
+   public void tearDown() {
+       if (driver != null) {
+           driver.quit();
+           driverThreadLocal.remove();
+       }
+   }
 }

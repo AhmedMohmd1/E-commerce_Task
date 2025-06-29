@@ -1,0 +1,19 @@
+{
+  "productName": "Primo Endurance Tank",
+  "productIndex": 1,
+  "size": "M",
+  "color": "Red",
+  "quantity": "2",
+  "email": "test@example.com",
+  "firstName": "test",
+  "lastName": "test2",
+  "company": "company",
+  "address": "add",
+  "city": "city",
+  "state": "Alabama",
+  "zipCode": "2345",
+  "country": "Afghanistan",
+  "phone": "012356546",
+  "shippingMethod": "Fixed",
+  "updatedQuantity": "5"
+}
